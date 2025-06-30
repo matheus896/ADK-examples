@@ -1,6 +1,8 @@
 from google.adk.agents import LlmAgent
 from pydantic import BaseModel, Field
+from dotenv import load_dotenv
 
+load_dotenv()
 
 # --- Define Output Schema ---
 class EmailContent(BaseModel):
@@ -15,7 +17,7 @@ class EmailContent(BaseModel):
 # --- Create Email Generator Agent ---
 root_agent = LlmAgent(
     name="email_agent",
-    model="gemini-2.0-flash",
+    model="gemini-2.5-flash",
     instruction="""
         You are an Email Generation Assistant.
         Your task is to generate a professional email based on the user's request.

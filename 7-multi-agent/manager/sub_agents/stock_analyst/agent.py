@@ -2,6 +2,8 @@ from datetime import datetime
 
 import yfinance as yf
 from google.adk.agents import Agent
+from dotenv import load_dotenv
+load_dotenv()
 
 
 def get_stock_price(ticker: str) -> dict:

@@ -17,7 +17,7 @@ session_service = InMemorySessionService()
 # ===== PART 2: Define Initial State =====
 # This will be used when creating a new session
 initial_state = {
-    "user_name": "Brandon Hancock",
+    "user_name": "Matheus Almeida",
     "purchased_courses": [],
     "interaction_history": [],
 }
@@ -26,11 +26,11 @@ initial_state = {
 async def main_async():
     # Setup constants
     APP_NAME = "Customer Support"
-    USER_ID = "aiwithbrandon"
+    USER_ID = "aiwithmatheus"
 
     # ===== PART 3: Session Creation =====
     # Create a new session with initial state
-    new_session = session_service.create_session(
+    new_session = await session_service.create_session(
         app_name=APP_NAME,
         user_id=USER_ID,
         state=initial_state,
@@ -60,7 +60,7 @@ async def main_async():
             break
 
         # Update interaction history with the user's query
-        add_user_query_to_history(
+        await add_user_query_to_history(
             session_service, APP_NAME, USER_ID, SESSION_ID, user_input
         )
 
@@ -69,7 +69,7 @@ async def main_async():
 
     # ===== PART 6: State Examination =====
     # Show final session state
-    final_session = session_service.get_session(
+    final_session = await session_service.get_session(
         app_name=APP_NAME, user_id=USER_ID, session_id=SESSION_ID
     )
     print("\nFinal Session State:")

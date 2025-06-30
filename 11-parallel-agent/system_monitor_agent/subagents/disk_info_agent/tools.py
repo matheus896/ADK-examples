@@ -52,6 +52,17 @@ def get_disk_info() -> Dict[str, Any]:
             except (PermissionError, FileNotFoundError):
                 # Some partitions may not be accessible
                 pass
+            except Exception as e:
+                # On Windows, older versions of psutil can fail on mount points with '%'.
+                # This is a workaround to prevent the entire tool from failing.
+                # The ideal solution is to upgrade the psutil library.
+                if "bad format char" in str(e):
+                    # We'll skip this partition and continue.
+                    continue
+                else:
+                    # For any other unexpected error, we fail the entire tool call
+                    # to make the problem visible.
+                    raise
 
         # Calculate overall disk stats
         overall_usage_percent = (

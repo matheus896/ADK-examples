@@ -3,12 +3,12 @@ import random
 
 from google.adk.agents import Agent
 from google.adk.models.lite_llm import LiteLlm
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # https://docs.litellm.ai/docs/providers/openrouter
-model = LiteLlm(
-    model="openrouter/openai/gpt-4.1",
-    api_key=os.getenv("OPENROUTER_API_KEY"),
-)
+model = LiteLlm(model="cerebras/llama-3.3-70b", api_key=os.getenv("CEREBRAS_API_KEY"))
 
 
 def get_dad_joke():

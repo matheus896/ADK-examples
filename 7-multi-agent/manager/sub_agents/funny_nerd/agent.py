@@ -1,5 +1,7 @@
 from google.adk.agents import Agent
 from google.adk.tools.tool_context import ToolContext
+from dotenv import load_dotenv
+load_dotenv()
 
 
 def get_nerd_joke(topic: str, tool_context: ToolContext) -> dict:
